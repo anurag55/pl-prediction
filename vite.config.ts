@@ -18,6 +18,11 @@ export default defineConfig({
           })
         },
       },
+      '/pl-badges': {
+        target: 'https://resources.premierleague.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/pl-badges/, '/premierleague/badges'),
+      },
     },
   },
 })

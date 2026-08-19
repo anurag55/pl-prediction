@@ -131,6 +131,11 @@ h1 {
   background: transparent;
 }
 
+.topbar-actions button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
 .team-strip {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -520,6 +525,117 @@ td.col-club {
   padding: 8px 12px;
   font-weight: 700;
 }
+
+.share-card-offscreen {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  pointer-events: none;
+}
+
+.share-card {
+  width: 720px;
+  padding: 28px;
+  background: #0b0714;
+  color: #f6f1ea;
+  font-family: Outfit, "Segoe UI", sans-serif;
+}
+
+.share-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.share-head p {
+  color: #00e38c;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.share-head h2 {
+  font-size: 22px;
+  letter-spacing: -0.03em;
+}
+
+.share-head span {
+  color: #a398b3;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.share-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+}
+
+.share-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: #171022;
+  border-radius: 10px;
+}
+
+.share-row.band-ucl { box-shadow: inset 3px 0 0 #3b82f6; }
+.share-row.band-uel { box-shadow: inset 3px 0 0 #f59e0b; }
+.share-row.band-uecl { box-shadow: inset 3px 0 0 #14b8a6; }
+.share-row.band-rel { box-shadow: inset 3px 0 0 #ef4444; }
+
+.share-pos {
+  width: 22px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.share-name {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.share-abbr {
+  color: #a398b3;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+.share-legend {
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  color: #a398b3;
+  font-size: 12px;
+}
+
+.share-legend li {
+  padding-left: 10px;
+  position: relative;
+}
+
+.share-legend li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 99px;
+  position: absolute;
+  left: 0;
+  top: 5px;
+}
+
+.share-legend .band-ucl::before { background: #3b82f6; }
+.share-legend .band-uel::before { background: #f59e0b; }
+.share-legend .band-uecl::before { background: #14b8a6; }
+.share-legend .band-rel::before { background: #ef4444; }
 
 @media (max-width: 960px) {
   .topbar,

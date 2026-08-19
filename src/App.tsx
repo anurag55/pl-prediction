@@ -9,12 +9,14 @@ import {
   type DragStartEvent,
 } from '@dnd-kit/core'
 import { arrayMove } from '@dnd-kit/sortable'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { PredictionTable } from './components/PredictionTable'
+import { ShareCard } from './components/ShareCard'
 import { TeamPanel } from './components/TeamPanel'
 import { TeamStrip } from './components/TeamStrip'
 import { crestUrl, SEASON_LABEL } from './data/teams'
 import { usePrediction } from './hooks/usePrediction'
+import { captureShareCard, shareOrDownload } from './lib/exportTableImage'
 import type { Team } from './types'
 
 function parseDragId(id: string | number) {
@@ -28,6 +30,8 @@ export default function App() {
     usePrediction()
   const [selectedId, setSelectedId] = useState<number | null>(ranked[0]?.id ?? 1)
   const [activeTeam, setActiveTeam] = useState<Team | null>(null)
+  const [sharing, setSharing] = useState(false)
+  const shareRef = useRef<HTMLDivElement>(null)
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -64,6 +68,20 @@ export default function App() {
     })
   }
 
+  async function shareTable() {
+    if (!shareRef.current || sharing) return
+    setSharing(true)
+    try {
+      const blob = await captureShareCard(shareRef.current)
+      await shareOrDownload(blob)
+    } catch (error) {
+      if (error instanceof DOMException && error.name === 'AbortError') return
+      window.alert('Could not create a share image. Try again in a moment.')
+    } finally {
+      setSharing(false)
+    }
+  }
+
   return (
     <div className="app">
       <header className="topbar">
@@ -78,6 +96,9 @@ export default function App() {
           <span className="season">{SEASON_LABEL}</span>
         </div>
         <div className="topbar-actions">
+          <button type="button" onClick={shareTable} disabled={sharing || ranked.length < 20}>
+            {sharing ? 'Preparing…' : 'Share image'}
+          </button>
           <button type="button" onClick={shuffle}>
             Shuffle
           </button>
@@ -119,6 +140,12 @@ export default function App() {
           ) : null}
         </DragOverlay>
       </DndContext>
+
+      <div className="share-card-offscreen" aria-hidden="true">
+        <div ref={shareRef} className="share-card">
+          <ShareCard ranked={ranked} />
+        </div>
+      </div>
     </div>
   )
 }
