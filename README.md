@@ -4,9 +4,16 @@ React app for ranking the 2026/27 Premier League. Drag clubs to set your finish,
 
 Club names, crests, and last-season standings are pulled from the same PulseLive API that powers [premierleague.com](https://www.premierleague.com). If that request fails, the app uses built-in 2025/26 data.
 
-## Run locally
+## Versions
 
-Needs Node 20.19+ or 24 (this repo includes `.nvmrc`).
+| | |
+| --- | --- |
+| Season | 2026/27 (last completed table: 2025/26) |
+| Node | 24.18.0 (see `.nvmrc`). 20.19+ also works. |
+
+Library versions live in `package.json` / `package-lock.json` so they stay in sync with installs.
+
+## Run locally
 
 ```bash
 nvm use
