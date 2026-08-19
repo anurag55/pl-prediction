@@ -22,3 +22,5 @@ npm run dev
 ```
 
 Then open the URL Vite prints (usually `http://localhost:5173`).
+
+Live club data uses `/api/pl-api`. Locally Vite proxies that; on Vercel the serverless function in `api/pl-api/` does. Push to `main` for the production site to pick it up.

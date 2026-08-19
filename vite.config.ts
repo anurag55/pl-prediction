@@ -5,10 +5,10 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/pl-api': {
+      '/api/pl-api': {
         target: 'https://footballapi.pulselive.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/pl-api/, ''),
+        rewrite: (path) => path.replace(/^\/api\/pl-api/, '/football'),
         configure: (proxy) => {
           proxy.on('proxyReq', (proxyReq) => {
             proxyReq.setHeader('Origin', 'https://www.premierleague.com')
@@ -18,10 +18,10 @@ export default defineConfig({
           })
         },
       },
-      '/pl-badges': {
+      '/api/pl-badges': {
         target: 'https://resources.premierleague.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/pl-badges/, '/premierleague/badges'),
+        rewrite: (path) => path.replace(/^\/api\/pl-badges/, '/premierleague/badges'),
       },
     },
   },

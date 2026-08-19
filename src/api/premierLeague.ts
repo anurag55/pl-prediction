@@ -1,7 +1,7 @@
 import { TEAMS } from '../data/teams'
 import type { Team } from '../types'
 
-const API = '/pl-api/football'
+const API = '/api/pl-api'
 
 type SeasonEntry = { id: number; label: string }
 type PulseTeam = {

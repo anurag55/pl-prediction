@@ -660,7 +660,7 @@ export function crestUrl(code: string, size: 50 | 70 | 100 = 70) {
 
 /** Same-origin crest URL so canvas export is not blocked by CORS. */
 export function shareCrestUrl(code: string, size: 50 | 70 | 100 = 50) {
-  return `/pl-badges/${size}/${code}.png`
+  return `/api/pl-badges/${size}/${code}.png`
 }
 
 export function qualificationBand(position: number) {

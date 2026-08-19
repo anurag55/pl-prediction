@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/pl-api/:path*", "destination": "/api/pl?path=:path*" },
+    { "source": "/api/pl-badges/:path*", "destination": "/api/badge?path=:path*" }
+  ]
+}
